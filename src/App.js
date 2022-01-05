@@ -1,22 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import { lazy, Suspense } from 'react';
+
+const Axiosgetpost = lazy(() => import('./AxiosGetPostPatchDelete'))
+const Axiosget = lazy(() => import('./AxiosGet'));
+const AxiosPost = lazy(() => import('./axiosPost'));
+const AxiosPatchPut = lazy(() => import('./axiosPatch'));
+const AxiosDelete = lazy(() => import('./AxiosDelete'));
+const AxiosAsyncAwait = lazy(()=>import ('./axiosAsyncAwait'));
+const AxiosInstance = lazy(()=>import('./axiosInstances'))
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Suspense fallback={<div> Loading ............ </div>} >
+          <AxiosInstance/>
+          {
+
+            //<AxiosAsyncAwait/>
+            //<AxiosDelete />
+            //<AxiosPatchPut/>
+            //<AxiosPost />
+            //<Axiosget/>
+            //<Axiosgetpost />
+
+          }
+
+        </Suspense>
       </header>
     </div>
   );
